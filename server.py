@@ -25,11 +25,16 @@ class MyServer(SimpleHTTPRequestHandler):
     super(MyServer,self).do_GET()
     
   def do_POST(self):
+    print(urlparse(self.path))
+    print(urlparse(self.path).query)
     params = parse_qs(urlparse(self.path).query)
     # it's a list in case there's duplicates
     inputText = params["inputText"][0] 
     inputText = inputText.replace("|||","\n").strip()
     print([inputText])
+    print(params)
+    dimension = params["dimension"][0]
+    print([dimension])
     response = self.server.nlgModel.getOutput(inputText)
     self._set_headers()
     self.wfile.write(response.encode())

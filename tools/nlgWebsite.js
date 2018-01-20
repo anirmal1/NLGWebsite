@@ -17,12 +17,14 @@ function getResponse(){
   // Sending stuff to server (for now, no server)
   var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
 
-  var toSend;
+  //var toSend;
   //if (document.getElementById("separateTalkTurns").checked){
-    toSend = $.trim(prompt).replace(/\n/g,"|||");
+  var toSend = $.trim(prompt).replace(/\n/g,"|||");
   //} else {
   //  toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
   //}
+
+
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
   	if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
@@ -35,7 +37,9 @@ function getResponse(){
       //checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
-  xmlHttp.open("POST", window.location.href+"?inputText="+toSend, true);
+	var dimension = getDimensionValue();
+  console.log(dimension);
+  xmlHttp.open("POST", window.location.href+"?inputText="+toSend+"&dimension="+dimension, true);
   xmlHttp.send();
 }
 
@@ -54,6 +58,14 @@ function checkboxes(cb){
 	}
 }
 */
+
+function getDimensionValue() {
+	if (document.getElementById('agencyRadio').checked) {
+		return document.getElementById('agencyRadio').value;
+	}	else {
+		return document.getElementById('powerRadio').value;
+	}
+}
 
 function setup(){
   /*Input field aesthetics*/

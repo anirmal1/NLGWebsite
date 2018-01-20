@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>NLG Demo</title>
+  <title>Sentence Revision with PPDB</title>
   <script src="tools/jquery-3.1.1.min.js"></script>
   <script src="tools/bootstrap.min.js"></script>
   <script src="tools/nlgWebsite.js"></script>
@@ -13,14 +13,14 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-  		<h1>NLG demo</h1>
-  		<h2><small>Test out an NLG system here!</small></h2>
+  		<h1>Sentence Revision with PPDB</h1>
+  		<h2><small>(todo: insert description here)</small></h2>
   	</div>
   	<div class="row">
   		<div class="col-sm-12">
-				<form>
-					<input type="radio" id="agency" name="agency"><label for="agency">agency</label>
-					<input type="radio" id="power" name="power"><label for="power">power</label>
+				<form id="agencyOrPower">
+					<input type="radio" id="agencyRadio" name="agencyOrPowerRadio" value="agency" checked><label for="agency">agency</label>
+					<input type="radio" id="powerRadio" name="agencyOrPowerRadio" value="agency"><label for="power">power</label>
 				</form>
   			<!--<form>
   				<input id="enableDialogue" type="checkbox" onchange="checkboxes(this)">&nbsp;This is a dialogue
@@ -43,4 +43,4 @@
   		</div>
   	</div>
   </div>
-</bod>
+</body>
