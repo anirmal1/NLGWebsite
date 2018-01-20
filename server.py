@@ -5,6 +5,7 @@ from urllib.parse import parse_qs, parse_qsl, urlparse
 import os
 from IPython import embed
 #import SocketServer
+from ppdbmodel import PPDBModel
 
 class MyModel():
   def getOutput(inputStr):
@@ -45,4 +46,4 @@ def run(nlg, serverClass=HTTPServer, handlerClass=MyServer):
   httpd.serve_forever()
 
 if __name__ == '__main__':
-  run(nlg=MyModel())
+  run(nlg=PPDBModel()) # run(nlg=MyModel())

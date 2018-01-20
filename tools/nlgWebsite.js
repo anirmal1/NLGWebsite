@@ -18,11 +18,11 @@ function getResponse(){
   var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
 
   var toSend;
-  if (document.getElementById("separateTalkTurns").checked){
+  //if (document.getElementById("separateTalkTurns").checked){
     toSend = $.trim(prompt).replace(/\n/g,"|||");
-  } else {
-    toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
-  }
+  //} else {
+  //  toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
+  //}
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
   	if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
@@ -30,14 +30,16 @@ function getResponse(){
       nlgResponse = xmlHttp.responseText;
       hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
       hist.innerHTML += `<hr class="removable">`;
-      checkboxes(document.getElementById("enableDialogue"));
-      checkboxes(document.getElementById("separateTalkTurns"));
+      $(".removable").show();
+      //checkboxes(document.getElementById("enableDialogue"));
+      //checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
   xmlHttp.open("POST", window.location.href+"?inputText="+toSend, true);
   xmlHttp.send();
 }
 
+/*
 function checkboxes(cb){
 	if (cb.id === "enableDialogue"){
 		if (cb.checked)
@@ -51,6 +53,7 @@ function checkboxes(cb){
 			$(".removable").hide();
 	}
 }
+*/
 
 function setup(){
   /*Input field aesthetics*/
