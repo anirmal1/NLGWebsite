@@ -35,7 +35,7 @@ class MyServer(SimpleHTTPRequestHandler):
     print(params)
     dimension = params["dimension"][0]
     print([dimension])
-    response = self.server.nlgModel.getOutput(inputText)
+    response = self.server.nlgModel.getOutput(inputText, dimension)
     self._set_headers()
     self.wfile.write(response.encode())
     

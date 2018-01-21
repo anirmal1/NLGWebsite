@@ -4,11 +4,11 @@ sys.path.append('/homes/iws/anirmal/research/research-nlp-2018/')
 import paraphraseAgePow as ppdb
 
 class PPDBModel():
-  def getOutput(self, inputStr):
+  def getOutput(self, inputStr, dimension):
     tokens = inputStr.split()
     paraphrase = []
     for token in tokens:
-      val = ppdb.findParas(token)
+      val = ppdb.findParas(token, dim=dimension)
       if val is None:
         paraphrase.append(token)
       else:
