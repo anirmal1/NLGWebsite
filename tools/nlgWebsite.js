@@ -24,12 +24,18 @@ function getResponse(){
   //  toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
   //}
 
+	var dimension = getDimensionValue();
+  var xmlurl = window.location.href + "?inputText="+toSend+"&dimension="+dimension;
+	//console.log("url");
+	//console.log(xmlurl);	
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
   	if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
       console.log(xmlHttp.responseText);
       nlgResponse = xmlHttp.responseText;
+			//console.log('response text');
+			//console.log(nlgResponse);
       hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
       hist.innerHTML += `<hr class="removable">`;
       $(".removable").show();
@@ -37,9 +43,8 @@ function getResponse(){
       //checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
-	var dimension = getDimensionValue();
-  console.log(dimension);
-  xmlHttp.open("POST", window.location.href+"?inputText="+toSend+"&dimension="+dimension, true);
+	xmlHttp.open("POST", xmlurl, true);
+  //xmlHttp.open("POST", window.location.href+"?inputText="+toSend+"&dimension="+dimension, true);
   xmlHttp.send();
 }
 
@@ -61,9 +66,9 @@ function checkboxes(cb){
 
 function getDimensionValue() {
 	if (document.getElementById('agencyRadio').checked) {
-		return document.getElementById('agencyRadio').value;
+		return "agency"; //document.getElementById('agencyRadio').value;
 	}	else {
-		return document.getElementById('powerRadio').value;
+		return "power"; //document.getElementById('powerRadio').value;
 	}
 }
 
