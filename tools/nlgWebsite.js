@@ -17,17 +17,11 @@ function getResponse(){
   // Sending stuff to server (for now, no server)
   var nlgResponse = "SWABHA's MY FAVORITE NLPer!";
 
-  //var toSend;
-  //if (document.getElementById("separateTalkTurns").checked){
   var toSend = $.trim(prompt).replace(/\n/g,"|||");
-  //} else {
-  //  toSend = $.trim(hist.innerText).replace(/\n/g,"|||");
-  //}
 
 	var dimension = getDimensionValue();
-  var xmlurl = window.location.href + "?inputText="+toSend+"&dimension="+dimension;
-	//console.log("url");
-	//console.log(xmlurl);	
+	var change = getChangeType();
+  var xmlurl = window.location.href + "?inputText="+toSend+"&dimension="+dimension+"&change="+change;
 
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() { 
@@ -39,12 +33,9 @@ function getResponse(){
       hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
       hist.innerHTML += `<hr class="removable">`;
       $(".removable").show();
-      //checkboxes(document.getElementById("enableDialogue"));
-      //checkboxes(document.getElementById("separateTalkTurns"));
     }
   }
 	xmlHttp.open("POST", xmlurl, true);
-  //xmlHttp.open("POST", window.location.href+"?inputText="+toSend+"&dimension="+dimension, true);
   xmlHttp.send();
 }
 
@@ -69,6 +60,14 @@ function getDimensionValue() {
 		return "agency"; //document.getElementById('agencyRadio').value;
 	}	else {
 		return "power"; //document.getElementById('powerRadio').value;
+	}
+}
+
+function getChangeType() {
+	if (document.getElementById('increaseRadio').checked) {
+		return 'increase';
+	} else {
+		return 'decrease';
 	}
 }
 
