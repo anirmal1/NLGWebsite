@@ -33,9 +33,17 @@ class MyServer(SimpleHTTPRequestHandler):
     inputText = inputText.replace("|||","\n").strip()
     dimension = params["dimension"][0]
     change = params["change"][0]
-    response = self.server.nlgModel.getOutput(inputText, dimension, change)
+    changeDirection = 'High' if change == 'increase' else 'Low'
     self._set_headers()
+    # self.wfile.write(('Paraphrasing "' + inputText + '" to ' + changeDirection + ' ' + dimension + '...').encode()) 
+    response, possible_words, scores = self.server.nlgModel.getOutput(inputText, dimension, change)
+    self.wfile.write((changeDirection + ' ' + dimension + ' paraphrase: ').encode())
     self.wfile.write(response.encode())
+    self.wfile.write(('<br/>' + possible_words).encode())
+    self.wfile.write(('<br/> PERPLEXITIES').encode())
+    sorted_items = sorted(scores, key=scores.get)
+    for item in sorted_items:
+      self.wfile.write(('<br/>' + item + ' : ' + str(scores[item])).encode())
     
 def run(nlg, serverClass=HTTPServer, handlerClass=MyServer):
   serverAddress = ('0.0.0.0', 5678)

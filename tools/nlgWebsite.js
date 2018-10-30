@@ -29,7 +29,7 @@ function getResponse(){
       console.log(xmlHttp.responseText);
       nlgResponse = xmlHttp.responseText;
 			//console.log('response text');
-			//console.log(nlgResponse);
+			console.log(nlgResponse);
       hist.innerHTML += `<div class="history nlg">${nlgResponse}</div>`;
       hist.innerHTML += `<hr class="removable">`;
       $(".removable").show();
@@ -59,7 +59,7 @@ function getDimensionValue() {
 	if (document.getElementById('agencyRadio').checked) {
 		return "agency"; //document.getElementById('agencyRadio').value;
 	}	else {
-		return "power"; //document.getElementById('powerRadio').value;
+		return "authority"; //document.getElementById('powerRadio').value;
 	}
 }
 
