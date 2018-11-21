@@ -12,7 +12,8 @@ class PPDBModel():
     self.nlp = spacy.load('en')
     # self.vectors = gs.models.KeyedVectors.load_word2vec_format('/homes/iws/anirmal/research/research-nlp-2018/retrofitted_vecs.txt', binary=False)
     self.vectors = gs.models.KeyedVectors.load_word2vec_format('/homes/iws/anirmal/NLGWebsite/weighted_retrofitted_vecs_word2vec.txt', binary=False)
-    self.model = kenlm.Model('/tmp/anirmal/adventure-all.arpa')
+    #self.model = kenlm.Model('/tmp/anirmal/adventure-all.arpa')
+    self.model = kenlm.Model('/tmp/anirmal/roc.arpa')
     self.unknowns = []
 
   def getOutput(self, inputStr, dimension, change):
